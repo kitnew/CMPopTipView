@@ -102,10 +102,16 @@ typedef enum {
 
 @protocol CMPopTipViewDelegate;
 
+#if __has_feature(objc_arc)
+#define release self
+#define autorelease self
+#else
+#define __unsafe_unretained
+#endif
 
 @interface CMPopTipView : UIView {
 	UIColor					*backgroundColor;
-	id<CMPopTipViewDelegate>	delegate;
+	__unsafe_unretained id<CMPopTipViewDelegate>	delegate;
     NSString                *title;
 	NSString				*message;
 	id						targetObject;

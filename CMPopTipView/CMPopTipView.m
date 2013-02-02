@@ -618,6 +618,7 @@
 	return self;
 }
 
+#if !__has_feature(objc_arc)
 - (void)dealloc {
 	[_autoDismissTimer release];
 	[_dismissTarget release];
@@ -634,6 +635,7 @@
 	
     [super dealloc];
 }
+#endif
 
 
 @end
